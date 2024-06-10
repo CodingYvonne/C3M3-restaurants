@@ -2,6 +2,7 @@ const express = require('express')
 const { engine } = require('express-handlebars')
 const app = express()
 const port = 3000
+const restaurants = require('./public/jsons/restaurant.json').results
 
 app.use(express.static('public'))
 
@@ -10,7 +11,7 @@ app.set('view engine', '.hbs');
 app.set('views', './views');
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { restaurants: restaurants });
 });
 
 
