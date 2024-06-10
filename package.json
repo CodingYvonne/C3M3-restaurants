@@ -11,6 +11,7 @@
   "author": "Yvonne",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "handlebars": "^4.7.8"
   }
 }
