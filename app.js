@@ -15,7 +15,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/restaurants/:id', (req, res) => {
-    res.render('detail', { restaurants: restaurants });
+    const id = req.params.id
+    const restaurant = restaurants.find((restDetail) => restDetail.id.toString() === id)
+    res.render('detail', { restaurant });
 });
 
 
