@@ -22,7 +22,7 @@ app.get('/search', (req, res) => {
             return false
         })
     ) : restaurants
-    res.render('home', { restaurants: matchedRestaurants, searchKeyword })
+    res.render('index', { restaurants: matchedRestaurants, searchKeyword })
 })
 
 
