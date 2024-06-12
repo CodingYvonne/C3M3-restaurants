@@ -4,15 +4,27 @@ const app = express()
 const port = 3000
 const restaurants = require('./public/jsons/restaurant.json').results
 
+
 app.use(express.static('public'))
 
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
-app.get('/', (req, res) => {
-    res.render('home', { restaurants: restaurants });
-});
+
+app.get('/search', (req, res) => {
+    const searchKeyword = req.query.keyword
+    const matchedRestaurants = searchKeyword ? restaurants.filter((restaurantList) =>
+        Object.values(restaurantList).some((property) => {
+            if (typeof property === 'string') {
+                return property.toLowerCase().includes(searchKeyword.toLowerCase())
+            }
+            return false
+        })
+    ) : restaurants
+    res.render('home', { restaurants: matchedRestaurants, searchKeyword })
+})
+
 
 app.get('/restaurants/:id', (req, res) => {
     const id = req.params.id
