@@ -14,7 +14,9 @@ app.get('/', (req, res) => {
     res.render('home', { restaurants: restaurants });
 });
 
-
+app.get('/restaurants/:id', (req, res) => {
+    res.render('detail', { restaurants: restaurants });
+});
 
 
 app.listen(port, () => {
